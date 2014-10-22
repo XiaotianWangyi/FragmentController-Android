@@ -21,7 +21,6 @@ public class FragmentController {
     private FragmentActivity homeActivity;
     private FragmentManager fragmentManager;
     private AnimationContainer animationContainer;
-    private FragmentTransaction transaction;
 
     public FragmentController(FragmentActivity homeActivity, int containerId,
             AnimationContainer animationContainer) {
@@ -33,7 +32,6 @@ public class FragmentController {
 
     private void init() {
         fragmentManager = homeActivity.getSupportFragmentManager();
-        transaction = fragmentManager.beginTransaction();
     }
 
     public void changeFragment(Fragment fragment) {
@@ -56,6 +54,7 @@ public class FragmentController {
     }
 
     private void changeFragment(Fragment fragment, boolean onBack, boolean onRemove) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
         if (onRemove) {
             if (fragment.isAdded()) {
                 if (animationContainer != null) {
